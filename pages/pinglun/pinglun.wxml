@@ -1,0 +1,91 @@
+<!-- 评论 -->
+<view wx:if='{{articleDelete}}'>
+  <view class=" text-lg text-center margin-top-xl ">
+    <text class="text-cyan">你来晚了！帖子以被删</text>
+  </view>
+</view>
+
+<view wx:else>
+<view class='wenZhang'>
+ <view class='padding-lr '>
+ <!--头像姓名时间点赞-->
+  <i-row>
+    <i-col span="3" i-class="col-class">    
+      <image src='{{comment.userImg}}' class='avatar' ></image>
+    </i-col>
+    <i-col span="15" i-class="col-class">  
+      <view class='header_nei'>
+        <text class='text-df text-black'>{{comment.userName}}</text>
+        <text class='time'decode='True'>{{comment.commentTime}}</text>
+      </view>
+    </i-col>
+    <i-col span="2"  i-class="col-class">
+      <view  bindtap="likeThis" data-curIndex="{{index}}">
+        <view wx:if="{{comment.isLike}}">
+          <text class='icon-likefill text-red'></text>
+        </view>
+        <view wx:else>
+          <text class='icon-like text-gray'></text>
+        </view>
+      </view>
+    </i-col>
+       <i-col span="2"  i-class="col-class">
+      <view>
+      <text>{{comment.commentLikeNum}}</text>
+      </view>
+    </i-col>
+  </i-row>
+  <!--评论详情-->
+<i-row>
+  <i-col offset='3' span='21' i-class="col-class">
+    <view class="padding-top-sm margin-bottom-sm  ">
+      <text class="text-black text-content text-df " space='emsp'>{{item.commentContent}}</text>
+    </view>
+  </i-col>
+</i-row>
+</view>
+</view>
+
+
+<view class='margin-top-sm'>
+<view class='padding-lr'>
+<view wx:for="{{reply}}" wx:key="index" wx:for-item="re" id="{{re.replyId}}}"bindtap="focusComment" data-name="{{re.userName}}" data-id="{{re.replyId}}">
+  <i-row>
+    <i-col span="3" i-class="col-class">    
+      <image src='{{re.userImg}}' class='avatar' ></image>
+    </i-col>
+    <i-col span="15" i-class="col-class">  
+      <view class='header_nei'>
+        <text class='text-df text-black'>{{re.userName}}</text>
+        <text class='time'decode='True'>{{re.replyTime}}</text>
+      </view>
+    </i-col>
+  </i-row>
+  <i-row>
+    <i-col offset='3' span='21' i-class="col-class">
+    <view  class="padding-tb-sm solid-bottom" >
+      <text class="text-black text-content text-df" space='emsp'>{{re.replyContent}}</text>
+    </view>
+  </i-col>
+  </i-row>
+</view>
+</view>
+</view>
+
+<view wx:if='{{isLoading}}'class="weui-loadmore">
+  <view class="weui-loading"></view>
+  <view class="weui-loadmore__tips">正在加载</view>
+</view>
+
+
+<view wx:if='{{noData}}'class="weui-loadmore weui-loadmore_line">
+  <view class="weui-loadmore__tips weui-loadmore__tips_in-line">没有更多回复了</view>
+</view>
+
+<form bindsubmit="reg">
+<view class="cu-bar foot input" style="bottom:{{InputBottom}}px">
+  <input class="solid-bottom" bindfocus="onRepleyFocus" bindblur="onReplyBlur" adjust-position="{{false}}" focus="{{focus}}" maxlength="300" cursor-spacing="10" value="{{commentContent}}" placeholder='{{placeholder}}' name="inputComment"></input>
+  <button class="cu-btn bg-cyan shadow" form-type="submit">发送</button>
+</view>
+</form>
+</view>

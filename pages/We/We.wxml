@@ -1,0 +1,81 @@
+<!--pages/We/We.wxml-->
+
+<!-- 搜索模块 -->
+<view class='fixed'>
+<scroll-view scroll-x class="bg-white nav fixed " scroll-with-animation scroll-left="{{scrollLeft}}">
+  <view class="cu-item {{index==TabCur?'text-cyan cur':''}}" wx:for="{{nav}}" wx:key bindtap="tabSelect" data-id="{{index}}">
+    {{item.topicName}}
+  </view>
+</scroll-view>
+</view>
+<view class="cu-load bg-white text-grey loading"></view>
+<view class="cu-bar search bg-white margin-top-lg">
+  <view class="search-form round ">
+    <text class="icon-search"></text>
+    <input type="text" placeholder="搜索你感兴趣的内容" bindinput="bindKeyInput"></input>
+  </view>
+  <view class="action">
+    <button class="cu-btn bg-cyan shadow-blur round" bindtap='Search'>搜索</button>
+  </view>
+</view>
+
+  <!-- 轮播图 -->
+<swiper class="card-swiper square-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
+  <swiper-item wx:for="{{swiperList}}" wx:key class="{{cardCur==index?'cur':''}}">
+    <view class="swiper-item">
+      <image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
+      <video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}" objectFit="cover" wx:if="{{item.type=='video'}}"></video>
+    </view>
+  </swiper-item>
+</swiper>
+
+
+<!-- 帖子card -->
+<!-- <scroll-view scroll-y='true' style='height:800rpx'> -->
+<view class='' wx:for="{{list[TabCur].data}}" wx:for-item="tz">
+  <navigator url="/pages/tiezi/tiezi?articleId={{tz.articleId}}">
+  <view class='solid-bottom padding'>
+  <text class='text-xl text-black '>{{tz.articleTitle}}</text>
+<!--帖子标签-->
+  <view class=" flex flex-wrap margin-top-sm">
+    <view wx:for="{{tz.keywords}}" wx:for-item="i" >
+      <view class="cu-tag line-cyan margin-right-xs round" catchtap='searchKeywords' data-keywords='{{i}}'>{{i}}</view>
+    </view>
+  </view>
+<!--帖子详情-->
+  <view class="flex text-sm text-gray justify-between margin-top-sm align-end">
+    <view class="flex  justify-start">
+      <view class="">{{tz.articleCreateTime}}</view>
+      <view class="margin-left-sm">{{tz.userName}}</view>
+      <view wx:if="{{tz.userRole==2}}">
+        <view class="cu-tag margin-left-xs  radius sm bg-green text-white">官方</view>
+      </view>
+    </view>
+<!-- 点赞和留言数 -->
+    <view class="flex  justify-end">
+      <view class="">
+        <text class="icon-likefill tx-grey">   {{tz.articleLikeNum}}</text>
+      </view>
+      <view class="margin-left-sm">
+        <text class="icon-comment tx-grey">   {{tz.articleCommentNum}}</text>
+      </view>
+    </view>
+  </view>
+  </view>
+  </navigator>
+</view>
+
+
+<view wx:if='{{isLoading}}'class="weui-loadmore">
+  <view class="weui-loading"></view>
+  <view class="weui-loadmore__tips">正在加载</view>
+</view>
+
+
+<view wx:if='{{list[TabCur].noData}}'class="weui-loadmore weui-loadmore_line">
+  <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>
+</view>
+<!-- </scroll-view> -->
+
+  
+<navigator class='add_symbol' url="/pages/fatie/fatie"></navigator>

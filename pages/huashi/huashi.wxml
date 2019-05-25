@@ -1,7 +1,0 @@
-<!--pages/huashi/huashi.wxml-->
-<text>pages/huashi/huashi.wxml</text>
-<view>
-  <block wx:for="{{items}}" wx:for-item="item" wx:key="index">
-    <view>{{index}}:{{item.name}}</view>
-  </block>
-</view>

@@ -1,13 +1,41 @@
 {
   "pages": [
-    "pages/huashi/huashi",
+    "pages/We/We",
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/me/me",
+    "pages/mydian/mydian",
+    "pages/myshou/myshou",
+    "pages/mytie/mytie",
+    "pages/myxiao/myxiao",
+    "pages/search/search",
+    "pages/fatie/fatie",
+    "pages/tiezi/tiezi",
+    "pages/pinglun/pinglun",
+    "pages/about/about"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "black"
-  }
+  },
+  "tabBar": {
+    "borderStyle": "white",
+    "list": [
+      {
+        "selectedIconPath": "images/us1.png",
+        "iconPath": "images/us.png",
+        "pagePath": "pages/We/We",
+        "text": "我们"
+      },
+      {
+        "selectedIconPath": "images/me1.png",
+        "iconPath": "images/me.png",
+        "pagePath": "pages/me/me",
+        "text": "我的"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
 }

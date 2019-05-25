@@ -1,0 +1,48 @@
+<!--pages/myshou/myshou.wxml-->
+<block wx:if="{{list.length==0}}">
+  <view class=" text-lg text-center margin-top-xl ">
+    <text class="text-cyan">赶紧去收藏帖子把！</text>
+  </view>
+</block>
+<!-- 有帖子时 -->
+<block wx:else>
+<view class=""  wx:for="{{list}}" wx:for-item="tz"  data-curIndex="{{tz.articleId}}">
+  <navigator url="/pages/tiezi/tiezi?articleId={{tz.articleId}}">
+  <view class='solid-bottom padding'>
+  <text class='text-xl text-black '>{{tz.articleTitle}}</text>
+<!--帖子标签-->
+  <view class=" flex flex-wrap margin-top-sm">
+    <view wx:for="{{tz.keywords}}" wx:for-item="i">
+      <view class="cu-tag line-grey margin-right-xs">{{i}}</view>
+    </view>
+  </view>
+<!--帖子详情-->
+  <view class="flex text-sm text-gray justify-between margin-top-sm align-end">
+    <view class="flex  justify-start">
+      <view class="">{{tz.articleCreateTime}}</view>
+      <view class="margin-left-sm">{{tz.userName}}</view>
+    </view>
+
+    <view class="flex  justify-end">
+      <view class="">
+        <text class="icon-likefill tx-grey">   {{tz.articleLikeNum}}</text>
+      </view>
+      <view class="margin-left-sm">
+        <text class="icon-comment tx-grey">   {{tz.articleCommentNum}}</text>
+      </view>
+    </view>
+  </view>
+  </view>
+  </navigator>
+</view>
+
+<view wx:if='{{isLoading}}'class="weui-loadmore">
+  <view class="weui-loading"></view>
+  <view class="weui-loadmore__tips">正在加载</view>
+</view>
+
+
+<view wx:if='{{noData}}'class="weui-loadmore weui-loadmore_line">
+  <view class="weui-loadmore__tips weui-loadmore__tips_in-line">没有更多了</view>
+</view>
+</block>

@@ -1,0 +1,44 @@
+<block wx:if="{{list.length==0}}">
+  <view class=" text-lg text-center margin-top-xl ">
+    <text class="text-cyan">你还没有收到回复哦！</text>
+  </view>
+</block>
+
+
+<block wx:else>
+<view class="cu-list menu-avatar comment solids-buttom" wx:for="{{list}}">
+  <view class="cu-item">
+    <view class="cu-avatar round" style="background-image:url({{item.senderUserImg}});"></view>
+    <view class="content">
+      <view class="text justify-start">
+        <view class='text-cyan'>{{item.senderUserName}}:</view>
+        <view>{{item.messageContent}}</view>
+      </view>
+      <view class="bg-gray padding-sm radius margin-top-sm  text-sm">
+        <view class="flex">
+          <view class="flex-sub text-cut ">{{item.repliedContent}}</view>
+        </view>
+      </view>
+      <view class="margin-top-sm flex  justify-start">
+      <view class="text-gray text-sm">{{item.messageTime}}</view>
+        <navigator class='padding-left-xl' url="/pages/tiezi/tiezi?articleId={{item.articleId}}">
+          <text class="icon-edit text-gray">进入帖子</text>
+        </navigator>
+        <navigator class='margin-left-sm' url="/pages/pinglun/pinglun?pinglunId={{item.commentId}}">
+          <text class="icon-messagefill text-gray ">进入评论</text>
+        </navigator>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view wx:if='{{isLoading}}'class="weui-loadmore">
+  <view class="weui-loading"></view>
+  <view class="weui-loadmore__tips">正在加载</view>
+</view>
+
+
+<view wx:if='{{noData}}'class="weui-loadmore weui-loadmore_line">
+  <view class="weui-loadmore__tips weui-loadmore__tips_in-line">没有更多了</view>
+</view>
+</block>
