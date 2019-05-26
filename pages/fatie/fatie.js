@@ -133,7 +133,6 @@ Page({
             filePath: str,
             name: 'multipartFile',
             success(res) {
-              console.log(res)
               if(JSON.parse(res.data).code==0){
                 console.log(JSON.parse(res.data).data)
                 var arr1 = that.data.imgUrl;
@@ -145,7 +144,7 @@ Page({
                 wx.hideLoading()
               }else{
                 wx.showToast({
-                  title: '怀疑你在搞黄色哦,请删除该图片',
+                  title: JSON.parse(res.data).msg,
                   icon: 'none',
                   duration: 2000
                 })
@@ -232,7 +231,7 @@ Page({
                   })
                 } else {
                   wx.showToast({
-                    title: '怀疑你在搞黄色哦',
+                    title: res.data.msg,
                     icon: 'none',
                     duration: 2000
                   })

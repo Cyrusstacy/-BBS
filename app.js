@@ -12,7 +12,6 @@ App({
     if (!sessionId){
       wx.login({
         success: function (res) {
-          console.log(res.code)
           //发送请求
           wx.request({
             url: that.globalData.url +'bbs/wechat/login', //接口地址
@@ -21,7 +20,6 @@ App({
               'content-type': 'application/json' //默认值
             },
             success: function (res) {
-              console.log(res.data)
               wx.setStorageSync('sessionId', res.data.data.sessionId)
               console.log(res.data.data.sessionId)
             }
@@ -63,7 +61,6 @@ App({
               success: function (res) {
                 that.globalData.userInfo = JSON.parse(res.rawData);
                 typeof cb == "function" && cb(that.globalData.userInfo, true);
-                console.log(res),
                 wx.request({
                   url: that.globalData.url+'bbs/wechat/info?sessionId=' + sessionId,
                   data:{

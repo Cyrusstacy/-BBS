@@ -63,7 +63,6 @@ Page({
       },
       success: function (res) {
         var nav=res.data.data
-        console.log(nav)
         that.setData({
           nav:nav
         })
@@ -73,7 +72,6 @@ Page({
             'Content-Type': 'application/json'
           },
           success: function (res) {
-            console.log(res.data.data)
             if (res.data.data.content != 0) {
               var a = 'list[' + 0 + '].data'
               var b = 'list[' + 0 + '].last'
@@ -97,7 +95,6 @@ Page({
               'Content-Type': 'application/json'
             },
             success: function (res) {
-              console.log(res.data.data)
               if(res.data.data.content!=0){
               var a = 'list[' + res.data.data.content[0].articleTopicType + '].data'
               var b = 'list[' + res.data.data.content[0].articleTopicType + '].last'

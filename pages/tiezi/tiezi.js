@@ -340,7 +340,6 @@ delTiezi: function (e) {
      }
      var toName = that.data.toName
      var commentId = that.data.commentId
-     console.log(commentId)
      var articleId = that.data.data1.articleId
      var sessionId = wx.getStorageSync('sessionId')
      if (commentId === "") {
@@ -354,7 +353,6 @@ delTiezi: function (e) {
          method: 'post',
          success(res) {
            if (res.data.code == 0) {
-             console.log(res.data)
              wx.hideLoading()
              wx.showToast({
                title: '评论已提交',
@@ -390,7 +388,6 @@ delTiezi: function (e) {
          method: 'post',
          success(res) {
            if (res.data.code == 0) {
-             console.log(res.data)
              wx.hideLoading()
              wx.showToast({
                title: '评论已提交',
@@ -428,7 +425,7 @@ delTiezi: function (e) {
          success: function (res) {
            app.globalData.userInfo = JSON.parse(res.rawData);
            typeof cb == "function" && cb(app.globalData.userInfo, true);
-           console.log(res),
+
              wx.request({
                url: app.globalData.url + 'bbs/wechat/info?sessionId=' + sessionId,
                data: {
@@ -439,7 +436,7 @@ delTiezi: function (e) {
                },
                method: "POST",
                success(res) {
-                 console.log(res)
+
                }
              })
          }
@@ -473,7 +470,6 @@ delTiezi: function (e) {
            var arr1 = that.data.data2;
            var arr2 = res.data.data.content;
            arr1 = arr1.concat(arr2);
-           console.log(arr2)
            that.setData({
              data2: arr1,
              isLoading: false,
@@ -493,38 +489,3 @@ delTiezi: function (e) {
    
 })
 
-  /**
-   * 获取帖子详情
-  
-  geTieziId(tieziId){
-    let that=this
-    wx.request({
-      url: '?tieziId='+tieziId,
-      success(res){
-        if(res.data.code===0){
-          that.setData({
-            tieziInfo:123
-
-          })
-        }
-      }
-    })
-  },
-
-  /**
-   * 获取评论详情
- 
-  getCommentList(tieziId){
-    wx.request({
-      url: '?tieziId='+tieziId,
-      success(res)
-    })
-  },
-
-
-  */
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  

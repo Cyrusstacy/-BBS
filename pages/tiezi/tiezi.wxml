@@ -7,9 +7,9 @@
 </view>
 <view wx:else>
 <view class="cu-modal {{showPopup?'show':''}}">
-  <view class="cu-dialog">
+  <view class="cu-dialog shadow-warp bg-white">
     <view wx:if="{{canIUse}}">
-      <view class="cu-bar bg-white justify-center margin-sm">
+      <view class="cu-bar  justify-center margin-sm">
         <view class="cu-avatar xl round margin-left" style="background-image:url(http://img.ccnunercel.cn/bbs/img/cxk.png);"></view>
       </view>
       <view class="margin-xs text-lg text-bold ">允许微信授权后，可体验更多功能</view>

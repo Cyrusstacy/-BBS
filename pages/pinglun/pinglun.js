@@ -176,7 +176,7 @@ Page({
           })
         } else {
           wx.showToast({
-            title: '怀疑你在搞黄色哦',
+            title: res.data.msg,
             icon: 'none',
             duration: 2000
           })
